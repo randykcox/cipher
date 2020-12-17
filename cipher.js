@@ -45,3 +45,7 @@ function caesarDecipher (ciphertext, shiftAmount) {
     let cipher = stringShift( alphabet, shiftAmount )
     return monoDecipher( ciphertext, cipher )
 }
+
+function rot13 (text) {
+    return caesarEncipher(text, 13)
+}
