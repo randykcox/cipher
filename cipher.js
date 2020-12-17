@@ -1,17 +1,28 @@
-function monoEncipher (plaintext) {
-    const alphabet = "abcdefghijklmnopqrstuvwxyz"
-    const cipher = "bcdefghijklmnopqrstuvwxyza"
+function transformText (text, textAlphabet, transformAlphabet ) {
 
-    let ciphertext = ""
-    for (let i=0; i<plaintext.length; i++) {
-        let index = alphabet.indexOf(plaintext[i].toLowerCase())
+    let transformedText = ""
+    for (let i=0; i<text.length; i++) {
+        let index = textAlphabet.indexOf(text[i].toLowerCase())
         if (index < 0) {
             // not a letter
-            ciphertext += plaintext[i]
+            transformedText += text[i]
         } else {
-            ciphertext += cipher[index]
+            transformedText += transformAlphabet[index]
         }
     }
 
-    return ciphertext
+    return transformedText
+}
+
+function monoEncipher (plaintext) {
+
+    const alphabet = "abcdefghijklmnopqrstuvwxyz"
+    const cipher = "bcdefghijklmnopqrstuvwxyza"
+    return transformText( plaintext, alphabet, cipher )
+}
+
+function monoDecipher (ciphertext) {
+    const alphabet = "abcdefghijklmnopqrstuvwxyz"
+    const cipher = "bcdefghijklmnopqrstuvwxyza"
+    return transformText( ciphertext, cipher, alphabet )
 }
