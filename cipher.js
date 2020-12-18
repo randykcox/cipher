@@ -28,12 +28,39 @@ function stringShift (inputString, shiftAmount) {
     return outputArr.join("")
 }
 
+function stripNonLetters (inputString) {
+    let outputString = ""
+    const alphabetArray = alphabet.split("")
+    for (let i=0; i<inputString.length; i++) {
+        if (alphabetArray.includes(inputString[i].toLowerCase())) {
+            outputString += inputString[i]
+        }
+    }
+    return outputString
+}
+
+function groupBy5 (inputString) {
+    if (inputString.length <= 5) {
+        return inputString
+    }
+
+    let inputArray = inputString.split("")
+    let outputString = ""
+    const numberOfGroups = Math.ceil(inputString.length/5)
+    for (let i=0; i<numberOfGroups-1; i++) {
+        outputString += inputArray.splice(0, 5).join("") + " "
+    }
+    outputString += inputArray.join("")
+
+    return outputString
+}
+
 function monoEncipher (plaintext, cipher = stringShift(alphabet, 1)) {
-    return transformText( plaintext, alphabet, cipher )
+    return transformText( plaintext, alphabet, cipher ).toUpperCase()
 }
 
 function monoDecipher (ciphertext, cipher = stringShift(alphabet, 1)) {
-    return transformText( ciphertext, cipher, alphabet )
+    return transformText( ciphertext, cipher, alphabet ).toLowerCase()
 }
 
 function caesarEncipher (plaintext, shiftAmount) {
