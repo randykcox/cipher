@@ -1,5 +1,9 @@
 const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
+/*
+ * Utility Functions
+ */
+
 function transformText (text, textAlphabet, transformAlphabet ) {
 
     let transformedText = ""
@@ -54,6 +58,45 @@ function groupBy5 (inputString) {
 
     return outputString
 }
+
+/*
+ * Analysis Functions
+ */
+
+function frequencyCount (inputString) {
+    inputString = stripNonLetters(inputString)
+    const inputLength = inputString.length
+    let counts = {}
+
+    // Initialize the count for each letter to 0
+    for (let i=0; i<alphabet.length; i++) {
+        counts[alphabet[i].toUpperCase()] = 0
+    }
+
+    // Counts
+    for (i=0; i<inputString.length; i++) {
+        let character = inputString[i].toUpperCase()
+        if (counts[character]) {
+            counts[character] = counts[character] + 1
+        } else {
+            counts[character] = 1
+        }
+    }
+
+    // Insert percentages
+    for (const letter in counts) {
+        counts[letter] = {
+            count: counts[letter],
+            percentage: (counts[letter]/inputLength)*100
+        }
+    }
+
+    return counts
+ }
+
+/*
+ * Encipher/Decipher Functions
+ */
 
 function monoEncipher (plaintext, cipher = stringShift(alphabet, 1)) {
     return transformText( plaintext, alphabet, cipher ).toUpperCase()
