@@ -63,6 +63,23 @@ function groupBy5 (inputString) {
  * Analysis Functions
  */
 
+const englishLetterFrequencies = {
+    // From "The Code Book" by Simon Singh, page 19
+    A: 8.2,     N: 6.7,
+    B: 1.5,     O: 7.5,
+    C: 2.8,     P: 1.9,
+    D: 4.3,     Q: 0.1,
+    E: 12.7,    R: 6.0,
+    F: 2.2,     S: 6.3,
+    G: 2.0,     T: 9.1,
+    H: 6.1,     U: 2.8,
+    I: 7.0,     V: 1.0,
+    J: 0.2,     W: 2.4,
+    K: 0.8,     X: 0.2,
+    L: 4.0,     Y: 2.0,
+    M: 2.4,     Z: 0.1
+}
+
 function frequencyCount (inputString) {
     inputString = stripNonLetters(inputString)
     const inputLength = inputString.length
