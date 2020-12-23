@@ -1,0 +1,21 @@
+#inputText {
+    width: 100%;
+}
+
+#freqTable, #workArea {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+#freqTable th, #freqTable td {
+    border: 0.5px solid #ddd;
+    text-align: center;
+}
+
+.letterBlock {
+    display: inline-block;
+    min-width: 1em;
+    margin-bottom: 10px;
+    text-align: center;
+}
