@@ -21,6 +21,7 @@ function analyzeText (evt) {
 
     }
 
+    freqTable.innerHTML = ""
     freqTable.append(letterRow, countRow, percentRow, guessRow)
 }
 
