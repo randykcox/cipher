@@ -61,3 +61,11 @@ button {
     margin-bottom: 10px;
     text-align: center;
 }
+
+.highlight {
+    background-color: yellow;
+}
+
+.guessInput:hover {
+    cursor: pointer;
+}

@@ -1,3 +1,5 @@
+let currentCipherLetter = ""
+
 function analyzeText (evt) {
     const text = document.querySelector("#inputText").value
     const freqTable = document.querySelector("#freqTable")
@@ -17,8 +19,12 @@ function analyzeText (evt) {
         letterRow.innerHTML += `<th>${letter}</th>`
         countRow.innerHTML += `<td>${fc[letter].count}</td>`
         percentRow.innerHTML += `<td>${fc[letter].percentage.toFixed(2)}</td>`
-        guessRow.innerHTML += `<td><span class="guess_${letter.toUpperCase()}"></span></td>`
-
+        guessRow.innerHTML += `<td class="guess_${letter.toUpperCase()} guessInput"
+                                    id="form_${letter.toUpperCase()}"
+                                    data-letter="${letter.toUpperCase()}">
+                                <span class="guess_${letter.toUpperCase()}">
+                                </span>
+                            </td>`
     }
 
     freqTable.innerHTML = ""
@@ -47,9 +53,64 @@ function populateWorkArea (evt) {
 function markAGuess (letter, guess) {
     let guessElements = document.querySelectorAll(".guess_" + letter)
     guessElements.forEach(function (guessEl) {
-        guessEl.innerText = guess
+        guessEl.innerText = guess.toLowerCase()
     })
+}
+
+function highlightAllWithClass (className) {
+    let elements = document.querySelectorAll(className)
+    elements.forEach(function (el) {
+        el.classList.add("highlight")
+    })
+}
+
+function removeHighlights () {
+    let elements = document.querySelectorAll(".highlight")
+    elements.forEach(function (el) {
+        el.classList.remove("highlight")
+    })
+}
+
+function cancelSelection () {
+    currentCipherLetter = ""
+    removeHighlights()
+}
+
+function handleKeyup (evt) {
+    function getLetterFromKeyCode (code) {
+        return (code.slice(0,3) === "Key") ? code.slice(-1) : undefined
+    }
+
+    if (evt.code === "Escape") {
+        cancelSelection()
+    }
+
+    const letter = getLetterFromKeyCode(evt.code)
+    if (letter) {
+        if (currentCipherLetter === "") {
+            // select a letter
+            currentCipherLetter = letter
+            highlightAllWithClass(".guess_" + letter)
+        } else {
+            // Mark a guess
+            markAGuess(currentCipherLetter, letter)
+            cancelSelection()
+        }
+    }
+}
+
+function selectGuessInput (evt) {
+    let letter = evt.target.dataset.letter
+    currentCipherLetter = letter
+    highlightAllWithClass(".guess_" + letter)
 }
 
 document.querySelector("#analyze").addEventListener("click", analyzeText)
 document.querySelector("#analyze").addEventListener("click", populateWorkArea)
+document.querySelector("#analyze").addEventListener("click", function () {
+    document.querySelectorAll(".guessInput").forEach(function (element) {
+        element.addEventListener("click", selectGuessInput)
+    })    
+})
+
+document.addEventListener("keyup", handleKeyup)
