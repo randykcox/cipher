@@ -53,3 +53,11 @@ textarea {
 .keyInput:hover {
     cursor: pointer;
 }
+
+#caesarShift {
+    width: 2em;
+}
+
+input[type="radio"] {
+    margin-left: 15px;
+}

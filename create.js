@@ -12,6 +12,7 @@ function getKeyAlphabet () {
     return key
 }
 
+// Given a key alphabet string, set the letter input fields
 function setKeyAlphabet (key) {
     const alphabet = "abcdefghijklmnopqrstuvwxyz"
     for (let i=0; i<alphabet.length; i++) {
@@ -20,8 +21,27 @@ function setKeyAlphabet (key) {
     }
 }
 
-function useRot13 () {
-    setKeyAlphabet(stringShift(alphabet, 13))
+function caesarShiftKey () {
+    let shiftAmount = document.querySelector("#caesarShift").value
+    setKeyAlphabet(stringShift(alphabet, shiftAmount))
+}
+
+function selectKeyType (evt) {
+    let keyType = evt.target.value
+    const shiftInput = document.querySelector("#caesarShift") 
+
+    switch (keyType) {
+        case 'rot13' :
+            shiftInput.disabled = true
+            setKeyAlphabet(stringShift(alphabet, 13))
+            break
+        case 'caesar' :
+            shiftInput.disabled = false
+            caesarShiftKey()
+            break
+        default :
+            shiftInput.disabled = true
+    }
 }
 
 function encipher () {
@@ -44,4 +64,8 @@ function decipher () {
 
 document.querySelector("#encipher").addEventListener("click", encipher)
 document.querySelector("#decipher").addEventListener("click", decipher)
-document.querySelector("#pregen_rot13").addEventListener("click", useRot13)
+
+document.getElementsByName('keytype').forEach(function(radioInput) {
+    radioInput.addEventListener("click", selectKeyType)
+});
+document.querySelector("#caesarShift").addEventListener("input", caesarShiftKey)

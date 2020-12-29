@@ -21,11 +21,26 @@
     <main>
         <section>
             <h2>Ciphertext</h2>
-            <textarea rows="4" id="ciphertext"></textarea>
+            <textarea rows="10" id="ciphertext"></textarea>
         </section>
 
         <section>
-            <h2>Cipher Options</h2>
+            <h2>Substitution key</h2>
+            <p>
+                <input type="radio" id="pregen_custom"
+                    name="keytype" value="custom" checked>
+                <label for="pregen_custom">Custom</label>
+ 
+                <input type="radio" id="pregen_caesar"
+                    name="keytype" value="caesar">
+                <label for="pregen_caesar">Caesar shift by</label>
+                <input type="number" id="caesarShift" value="1"
+                    maxlength="2" size="2" disabled>
+
+                <input type="radio" id="pregen_rot13"
+                    name="keytype" value="rot13">
+                <label for="pregen_rot13">ROT13</label>  
+             </p>
             <table id="keyTable">
                 <tr>
                     <th></th>
@@ -164,14 +179,16 @@
                     </td>
                 </tr>
             </table>
-            <p>Pregen keys: <a href="#" id="pregen_rot13">ROT13</a></p>
-            <button id="decipher">&downdownarrows; Decipher</button>
-            <button id="encipher">&uuarr; Encipher</button>
+
+            <p>
+                <button id="decipher">&downdownarrows; Decipher</button>
+                <button id="encipher">&uuarr; Encipher</button>
+            </p>
         </section>
 
         <section>
             <h2>Plaintext</h2>
-            <textarea rows="4" id="plaintext"></textarea>
+            <textarea rows="10" id="plaintext"></textarea>
         </section>
     </main>
 
