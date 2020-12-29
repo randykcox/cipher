@@ -17,8 +17,12 @@ button {
     width: 99%;
 }
 
+.hide {
+    display: none;
+}
+
 #freqTable, #workArea {
-    width: 100%;
+    width: 99%;
     border-collapse: collapse;
 }
 

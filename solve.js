@@ -19,7 +19,7 @@ function analyzeText (text) {
     letterRow.innerHTML += `<th></th>`
     countRow.innerHTML += `<th>#</th>`
     percentRow.innerHTML += `<th>%</th>`
-    guessRow.innerHTML += `<th>guess</th>`
+    guessRow.innerHTML += `<th>Key</th>`
 
     for (const letter in fc.letters) {
         const fullScale = 12
@@ -133,6 +133,12 @@ function handleKeyup (evt) {
 }
 
 function selectGuessInput (evt) {
+    // If it's already selected, deselect it
+    if (evt.target.classList.contains("highlight")) {
+        cancelSelection()
+        return
+    }
+
     cancelSelection()
     let letter = evt.target.dataset.letter
     currentCipherLetter = letter
@@ -140,12 +146,18 @@ function selectGuessInput (evt) {
 }
 
 function processInput (evt) {
-    const text = document.querySelector("#inputText").value.trim()
+    const text = document.querySelector("#inputText").value.trim().toUpperCase()
 
     // Guard against empty textarea
     if (text.length === 0) {
         return
     }
+
+    // Show the hidden sections of the page
+    document.querySelectorAll("section.hide")
+        .forEach(function (section) {
+            section.classList.remove("hide")
+    })
 
     analyzeText(text)
     populateWorkArea(text)
