@@ -31,6 +31,10 @@ function selectKeyType (evt) {
     const shiftInput = document.querySelector("#caesarShift") 
 
     switch (keyType) {
+        case 'random' :
+            shiftInput.disabled = true
+            setKeyAlphabet(shuffleString(alphabet))
+            break
         case 'rot13' :
             shiftInput.disabled = true
             setKeyAlphabet(stringShift(alphabet, 13))

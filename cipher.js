@@ -4,8 +4,22 @@ const alphabet = "abcdefghijklmnopqrstuvwxyz"
  * Utility Functions
  */
 
-function transformText (text, textAlphabet, transformAlphabet ) {
+function shuffleString (input) {
+    let array = input.split("")
 
+    // Fisher-Yates shuffle implementation from
+    // https://medium.com/@nitinpatel_20236/how-to-shuffle-correctly-shuffle-an-array-in-javascript-15ea3f84bfb
+    for(let i = array.length-1; i > 0; i--){
+        const j = Math.floor(Math.random() * i)
+        const temp = array[i]
+        array[i] = array[j]
+        array[j] = temp
+    }
+
+    return array.join("")
+}
+
+function transformText (text, textAlphabet, transformAlphabet ) {
     let transformedText = ""
     for (let i=0; i<text.length; i++) {
         let index = textAlphabet.indexOf(text[i].toLowerCase())
