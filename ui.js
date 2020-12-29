@@ -6,8 +6,7 @@ function graphBackgroundStyle (percent, max) {
     return `background-image: linear-gradient(transparent ${colorStop}%, var(--graphColor) ${colorStop}%);`
 }
 
-function analyzeText (evt) {
-    const text = document.querySelector("#inputText").value
+function analyzeText (text) {
     const freqTable = document.querySelector("#freqTable")
     const fc = frequencyCount(text)
     
@@ -54,8 +53,7 @@ function isPunctuation (character) {
     return marks.includes(character)
 }
 
-function populateWorkArea (evt) {
-    const text = document.querySelector("#inputText").value.trim()
+function populateWorkArea (text) {
     const workArea = document.querySelector("#workArea")
     let workAreaMarkup = ""
 
@@ -133,12 +131,20 @@ function selectGuessInput (evt) {
     highlightAllWithClass(".guess_" + letter)
 }
 
-document.querySelector("#analyze").addEventListener("click", analyzeText)
-document.querySelector("#analyze").addEventListener("click", populateWorkArea)
-document.querySelector("#analyze").addEventListener("click", function () {
+function processInput (evt) {
+    const text = document.querySelector("#inputText").value.trim()
+
+    // Guard against empty textarea
+    if (text.length === 0) {
+        return
+    }
+
+    analyzeText(text)
+    populateWorkArea(text)
     document.querySelectorAll(".guessInput").forEach(function (element) {
         element.addEventListener("click", selectGuessInput)
-    })    
-})
+    })
+}
 
+document.querySelector("#analyze").addEventListener("click", processInput)
 document.addEventListener("keyup", handleKeyup)
