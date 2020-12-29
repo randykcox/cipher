@@ -22,22 +22,22 @@ function analyzeText (evt) {
     percentRow.innerHTML += `<th>%</th>`
     guessRow.innerHTML += `<th>guess</th>`
 
-    for (const letter in fc) {
+    for (const letter in fc.letters) {
         const fullScale = 12
         const cellMax = fullScale / 3
-        const topCellGraph = (fc[letter].percentage >= fullScale)
+        const topCellGraph = (fc.letters[letter].percentage >= fullScale)
             ? "background-image: linear-gradient(var(--graphColor), var(--graphColor))"
-            : graphBackgroundStyle(fc[letter].percentage - cellMax*2, fullScale)
-        const middleCellGraph = (fc[letter].percentage >= cellMax*2)
+            : graphBackgroundStyle(fc.letters[letter].percentage - cellMax*2, fullScale)
+        const middleCellGraph = (fc.letters[letter].percentage >= cellMax*2)
             ? "background-image: linear-gradient(var(--graphColor), var(--graphColor))"
-            : graphBackgroundStyle(fc[letter].percentage - cellMax, fullScale)
-        const bottomCellGraph = (fc[letter].percentage >= cellMax)
+            : graphBackgroundStyle(fc.letters[letter].percentage - cellMax, fullScale)
+        const bottomCellGraph = (fc.letters[letter].percentage >= cellMax)
             ? "background-image: linear-gradient(var(--graphColor), var(--graphColor))"
-            : graphBackgroundStyle(fc[letter].percentage, fullScale)
+            : graphBackgroundStyle(fc.letters[letter].percentage, fullScale)
         
         letterRow.innerHTML += `<th style="${topCellGraph}">${letter}</th>`
-        countRow.innerHTML += `<td style="${middleCellGraph}">${fc[letter].count}</td>`
-        percentRow.innerHTML += `<td style="${bottomCellGraph}">${fc[letter].percentage.toFixed(2)}</td>`
+        countRow.innerHTML += `<td style="${middleCellGraph}">${fc.letters[letter].count}</td>`
+        percentRow.innerHTML += `<td style="${bottomCellGraph}">${fc.letters[letter].percentage.toFixed(2)}</td>`
         guessRow.innerHTML += `<td id="form_${letter.toUpperCase()}">
                                 <div class="guess_${letter.toUpperCase()} guessInput"
                                     data-letter="${letter.toUpperCase()}">

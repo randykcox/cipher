@@ -83,32 +83,34 @@ const englishLetterFrequencies = {
 function frequencyCount (inputString) {
     inputString = stripNonLetters(inputString)
     const inputLength = inputString.length
-    let counts = {}
+    let letters = {}
 
     // Initialize the count for each letter to 0
     for (let i=0; i<alphabet.length; i++) {
-        counts[alphabet[i].toUpperCase()] = 0
+        letters[alphabet[i].toUpperCase()] = 0
     }
 
     // Counts
     for (i=0; i<inputString.length; i++) {
         let character = inputString[i].toUpperCase()
-        if (counts[character]) {
-            counts[character] = counts[character] + 1
+        if (letters[character]) {
+            letters[character] = letters[character] + 1
         } else {
-            counts[character] = 1
+            letters[character] = 1
         }
     }
 
     // Insert percentages
-    for (const letter in counts) {
-        counts[letter] = {
-            count: counts[letter],
-            percentage: (counts[letter]/inputLength)*100
+    for (const letter in letters) {
+        letters[letter] = {
+            count: letters[letter],
+            percentage: (letters[letter]/inputLength)*100
         }
     }
 
-    return counts
+    return {
+        letters: letters
+    }
  }
 
 /*
