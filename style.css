@@ -60,6 +60,10 @@ button {
     text-align: center;
 }
 
+#workArea {
+    background-color: #cbd6ea;
+    padding: 5px;
+}
 .guessInput {
     height: 1.5em;
     background-color: #fff;

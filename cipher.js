@@ -80,8 +80,7 @@ const englishLetterFrequencies = {
     M: 2.4,     Z: 0.1
 }
 
-function frequencyCount (inputString) {
-    inputString = stripNonLetters(inputString)
+function singleLetterFrequencies (inputString) {
     const inputLength = inputString.length
     let letters = {}
 
@@ -108,8 +107,41 @@ function frequencyCount (inputString) {
         }
     }
 
+    return letters
+}
+
+function sequenceFrequencies (sequenceLength, inputString, freqThresshold=3) {
+    let sequences = {}
+
+    const inputLength = inputString.length
+
+    for (i=0; i<inputString.length-(sequenceLength-1); i++) {
+        let sequence = inputString.slice(i, i+sequenceLength).toUpperCase()
+        if (sequences[sequence]) {
+            sequences[sequence] = sequences[sequence] + 1
+        } else {
+            sequences[sequence] = 1
+        }
+    }
+
+    // Remove sequences that don't appear frequently enough
+    for (let sequence in sequences) {
+        if (sequences[sequence] <= freqThresshold) {
+            delete sequences[sequence]
+        }
+    }
+
+    return sequences
+}
+
+function frequencyCount (inputString) {
+    inputString = stripNonLetters(inputString)
+    
     return {
-        letters: letters
+        letters:    singleLetterFrequencies(inputString),
+        digraphs:   sequenceFrequencies(2, inputString, 5),
+        trigraphs:  sequenceFrequencies(3, inputString, 4),
+        quadgraphs: sequenceFrequencies(4, inputString)
     }
  }
 

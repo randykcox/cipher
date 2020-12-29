@@ -46,6 +46,14 @@ function analyzeText (text) {
 
     freqTable.innerHTML = ""
     freqTable.append(letterRow, countRow, percentRow, guessRow)
+
+    const sequencesEl = document.querySelector("#sequences")
+    let para2 = document.createElement("p")
+    para2.innerText = "Digraphs: " + JSON.stringify(fc.digraphs).replace(/,/gi, " ")
+    sequencesEl.append(para2)
+    let para3 = document.createElement("p")
+    para3.innerText = "Trigraphs: " + JSON.stringify(fc.trigraphs).replace(/,/gi, " ")
+    sequencesEl.append(para3)
 }
 
 function isPunctuation (character) {
