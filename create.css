@@ -50,6 +50,10 @@ textarea {
     background-color: yellow;
 }
 
+.subtle {
+    opacity: 0.3;
+}
+
 .keyInput:hover {
     cursor: pointer;
 }

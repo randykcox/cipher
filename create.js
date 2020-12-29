@@ -19,6 +19,8 @@ function setKeyAlphabet (key) {
         const inputClass = "key_" + alphabet[i].toUpperCase()
         document.querySelector("input." + inputClass).value = key[i]
     }
+
+    document.querySelector("#keystring").innerText = getKeyAlphabet()
 }
 
 function caesarShiftKey () {

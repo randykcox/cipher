@@ -38,7 +38,7 @@
                 <input type="radio" id="pregen_keyword"
                     name="keytype" value="keyword">
                 <label for="pregen_keyword">Keyword:</label>
-                <input type="text" id="keyword" value="" disabled>
+                <input type="text" id="keyword" value="" autocomplete="off" disabled>
 
                 <input type="radio" id="pregen_caesar"
                     name="keytype" value="caesar">
@@ -192,6 +192,7 @@
             <p>
                 <button id="decipher">&downdownarrows; Decipher</button>
                 <button id="encipher">&uuarr; Encipher</button>
+                <span class="subtle" id="keystring"></span>
             </p>
         </section>
 

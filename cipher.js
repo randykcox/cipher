@@ -89,7 +89,9 @@ function groupBy5 (inputString) {
 }
 
 function generateKeyByKeyword (keyword) {
-    return stripDuplicateLetters( keyword + alphabet ).toLowerCase()
+    const key = stripDuplicateLetters( stripNonLetters(keyword) + alphabet )
+                    .toLowerCase()
+    return key
 }
 
 /*
