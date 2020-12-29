@@ -73,7 +73,10 @@ function populateWorkArea (text) {
             }
             workAreaMarkup +=   `<div class="letterBlock">
                                     <div class="source">${text[i]}</div>
-                                    <div class="guess guess_${text[i]}">${guessCharacter}</div>
+                                    <div class="guess guess_${text[i]}"
+                                        data-letter="${text[i].toUpperCase()}">
+                                        ${guessCharacter}
+                                    </div>
                                 </div>`
         } else {
             workAreaMarkup += `<div class="letterBlock"></div>`
@@ -133,6 +136,8 @@ function handleKeyup (evt) {
 }
 
 function selectGuessInput (evt) {
+    // Bail if the clicked item doesn't have .guess class
+
     // If it's already selected, deselect it
     if (evt.target.classList.contains("highlight")) {
         cancelSelection()
@@ -161,9 +166,12 @@ function processInput (evt) {
 
     analyzeText(text)
     populateWorkArea(text)
+    // add click handlers to the letters in the key table
     document.querySelectorAll(".guessInput").forEach(function (element) {
         element.addEventListener("click", selectGuessInput)
     })
+    // add a delegate click handler for letters in the work area
+    document.querySelector("#workArea").addEventListener("click", selectGuessInput)
 }
 
 document.querySelector("#analyze").addEventListener("click", processInput)
