@@ -1,5 +1,11 @@
 let currentCipherLetter = ""
 
+function graphBackgroundStyle (percent, max) {
+    // background-image: linear-gradient(transparent 50%, var(--graphColor) 50%);
+    const colorStop = 100 - ((percent * 100) / max)
+    return `background-image: linear-gradient(transparent ${colorStop}%, var(--graphColor) ${colorStop}%);`
+}
+
 function analyzeText (evt) {
     const text = document.querySelector("#inputText").value
     const freqTable = document.querySelector("#freqTable")
@@ -9,6 +15,7 @@ function analyzeText (evt) {
     let countRow = document.createElement("tr")
     let percentRow = document.createElement("tr")
     let guessRow = document.createElement("tr")
+    guessRow.id = "guessInputs"
 
     letterRow.innerHTML += `<th></th>`
     countRow.innerHTML += `<th>#</th>`
@@ -16,14 +23,25 @@ function analyzeText (evt) {
     guessRow.innerHTML += `<th>guess</th>`
 
     for (const letter in fc) {
-        letterRow.innerHTML += `<th>${letter}</th>`
-        countRow.innerHTML += `<td>${fc[letter].count}</td>`
-        percentRow.innerHTML += `<td>${fc[letter].percentage.toFixed(2)}</td>`
-        guessRow.innerHTML += `<td class="guess_${letter.toUpperCase()} guessInput"
-                                    id="form_${letter.toUpperCase()}"
+        const fullScale = 12
+        const cellMax = fullScale / 3
+        const topCellGraph = (fc[letter].percentage >= fullScale)
+            ? "background-image: linear-gradient(var(--graphColor), var(--graphColor))"
+            : graphBackgroundStyle(fc[letter].percentage - cellMax*2, fullScale)
+        const middleCellGraph = (fc[letter].percentage >= cellMax*2)
+            ? "background-image: linear-gradient(var(--graphColor), var(--graphColor))"
+            : graphBackgroundStyle(fc[letter].percentage - cellMax, fullScale)
+        const bottomCellGraph = (fc[letter].percentage >= cellMax)
+            ? "background-image: linear-gradient(var(--graphColor), var(--graphColor))"
+            : graphBackgroundStyle(fc[letter].percentage, fullScale)
+        
+        letterRow.innerHTML += `<th style="${topCellGraph}">${letter}</th>`
+        countRow.innerHTML += `<td style="${middleCellGraph}">${fc[letter].count}</td>`
+        percentRow.innerHTML += `<td style="${bottomCellGraph}">${fc[letter].percentage.toFixed(2)}</td>`
+        guessRow.innerHTML += `<td id="form_${letter.toUpperCase()}">
+                                <div class="guess_${letter.toUpperCase()} guessInput"
                                     data-letter="${letter.toUpperCase()}">
-                                <span class="guess_${letter.toUpperCase()}">
-                                </span>
+                                </div>
                             </td>`
     }
 
