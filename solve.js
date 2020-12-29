@@ -48,6 +48,7 @@ function analyzeText (text) {
     freqTable.append(letterRow, countRow, percentRow, guessRow)
 
     const sequencesEl = document.querySelector("#sequences")
+    sequencesEl.innerHTML = ""
     let para2 = document.createElement("p")
     para2.innerText = "Digraphs: " + JSON.stringify(fc.digraphs).replace(/,/gi, " ")
     sequencesEl.append(para2)
