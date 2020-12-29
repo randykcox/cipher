@@ -49,6 +49,11 @@ function analyzeText (evt) {
     freqTable.append(letterRow, countRow, percentRow, guessRow)
 }
 
+function isPunctuation (character) {
+    const marks = ",.?!&-:;'\"()"
+    return marks.includes(character)
+}
+
 function populateWorkArea (evt) {
     const text = document.querySelector("#inputText").value.trim()
     const workArea = document.querySelector("#workArea")
@@ -56,9 +61,13 @@ function populateWorkArea (evt) {
 
     for (let i=0; i<text.length; i++) {
         if (text[i] !== " ") {
+            let guessCharacter = "_"
+            if (isPunctuation(text[i])) {
+                guessCharacter = text[i]
+            }
             workAreaMarkup +=   `<div class="letterBlock">
                                     <div class="source">${text[i]}</div>
-                                    <div class="guess guess_${text[i]}">_</div>
+                                    <div class="guess guess_${text[i]}">${guessCharacter}</div>
                                 </div>`
         } else {
             workAreaMarkup += `<div class="letterBlock"></div>`
