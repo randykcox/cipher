@@ -118,6 +118,7 @@ function handleKeyup (evt) {
 }
 
 function selectGuessInput (evt) {
+    cancelSelection()
     let letter = evt.target.dataset.letter
     currentCipherLetter = letter
     highlightAllWithClass(".guess_" + letter)
