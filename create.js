@@ -22,29 +22,44 @@ function setKeyAlphabet (key) {
 }
 
 function caesarShiftKey () {
-    let shiftAmount = document.querySelector("#caesarShift").value
-    setKeyAlphabet(stringShift(alphabet, shiftAmount))
+    const shiftAmount = document.querySelector("#caesarShift").value
+    setKeyAlphabet(shiftString(alphabet, shiftAmount))
+}
+
+function keywordKey () {
+    const keyword = document.querySelector("#keyword").value
+    setKeyAlphabet(generateKeyByKeyword(keyword))
 }
 
 function selectKeyType (evt) {
     let keyType = evt.target.value
     const shiftInput = document.querySelector("#caesarShift") 
+    const keywordInput = document.querySelector("#keyword") 
 
     switch (keyType) {
+        case 'keyword' :
+            shiftInput.disabled = true
+            keywordInput.disabled = false
+            keywordKey()
+            break
         case 'random' :
             shiftInput.disabled = true
+            keywordInput.disabled = true
             setKeyAlphabet(shuffleString(alphabet))
             break
         case 'rot13' :
             shiftInput.disabled = true
-            setKeyAlphabet(stringShift(alphabet, 13))
+            keywordInput.disabled = true
+            setKeyAlphabet(shiftString(alphabet, 13))
             break
         case 'caesar' :
             shiftInput.disabled = false
+            keywordInput.disabled = true
             caesarShiftKey()
             break
         default :
             shiftInput.disabled = true
+            keywordInput.disabled = true
     }
 }
 
@@ -69,7 +84,11 @@ function decipher () {
 document.querySelector("#encipher").addEventListener("click", encipher)
 document.querySelector("#decipher").addEventListener("click", decipher)
 
-document.getElementsByName('keytype').forEach(function(radioInput) {
-    radioInput.addEventListener("click", selectKeyType)
+document.getElementsByName('keytype')
+    .forEach(function(radioInput) {
+        radioInput.addEventListener("click", selectKeyType)
 });
-document.querySelector("#caesarShift").addEventListener("input", caesarShiftKey)
+document.querySelector("#caesarShift")
+    .addEventListener("input", caesarShiftKey)
+document.querySelector("#keyword")
+    .addEventListener("input", keywordKey)

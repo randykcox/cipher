@@ -34,7 +34,7 @@ function transformText (text, textAlphabet, transformAlphabet ) {
     return transformedText
 }
 
-function stringShift (inputString, shiftAmount) {
+function shiftString (inputString, shiftAmount) {
     if (shiftAmount < 0) {
         throw new Error("Cannot shift backwards (yet)")
     }
@@ -57,6 +57,21 @@ function stripNonLetters (inputString) {
     return outputString
 }
 
+function stripDuplicateLetters (inputString) {
+    let outputString = ""
+    let letterTally = {}
+
+    for (i=0; i<inputString.length; i++) {
+        let character = inputString[i]
+        if (!letterTally[character.toUpperCase()]) {
+            letterTally[character.toUpperCase()] = 1
+            outputString += character
+        }
+    }
+
+    return outputString
+}
+
 function groupBy5 (inputString) {
     if (inputString.length <= 5) {
         return inputString
@@ -71,6 +86,10 @@ function groupBy5 (inputString) {
     outputString += inputArray.join("")
 
     return outputString
+}
+
+function generateKeyByKeyword (keyword) {
+    return stripDuplicateLetters( keyword + alphabet ).toLowerCase()
 }
 
 /*
@@ -163,21 +182,21 @@ function frequencyCount (inputString) {
  * Encipher/Decipher Functions
  */
 
-function monoEncipher (plaintext, cipher = stringShift(alphabet, 1)) {
+function monoEncipher (plaintext, cipher = shiftString(alphabet, 1)) {
     return transformText( plaintext, alphabet, cipher ).toUpperCase()
 }
 
-function monoDecipher (ciphertext, cipher = stringShift(alphabet, 1)) {
+function monoDecipher (ciphertext, cipher = shiftString(alphabet, 1)) {
     return transformText( ciphertext, cipher, alphabet ).toLowerCase()
 }
 
 function caesarEncipher (plaintext, shiftAmount) {
-    let cipher = stringShift( alphabet, shiftAmount )
+    let cipher = shiftString( alphabet, shiftAmount )
     return monoEncipher( plaintext, cipher )
 }
 
 function caesarDecipher (ciphertext, shiftAmount) {
-    let cipher = stringShift( alphabet, shiftAmount )
+    let cipher = shiftString( alphabet, shiftAmount )
     return monoDecipher( ciphertext, cipher )
 }
 
