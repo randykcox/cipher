@@ -50,7 +50,7 @@ function analyzeText (evt) {
 }
 
 function isPunctuation (character) {
-    const marks = ",.?!&-:;'\"()"
+    const marks = ",.?!&-:;’'\"()"
     return marks.includes(character)
 }
 
