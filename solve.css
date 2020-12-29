@@ -6,48 +6,15 @@
     --graphColor: #bbb;
 }
 
-body {
-    background-color: var(--primaryBg);
-}
-
-header {
-    background-color: var(--secondaryBg);
-    padding: 5px;
-}
-
-h1, h2, button {
+button {
     font-family: Helvetica, Arial, sans-serif;
     margin: 0;
-}
-
-h1 {
-    font-size: 1.2rem;
-    font-weight: normal;
-}
-
-h2 {
-    font-size: 1rem;
-    margin-bottom: 5px;
-}
-
-main {
-    margin: 10px;
-}
-
-section {
-    margin: 20px 0;
-}
-
-textarea {
-    display: block;
-}
-
-button {
     background-color: var(--secondaryBg);
     color: #eee;
 }
+
 #inputText {
-    width: 100%;
+    width: 99%;
 }
 
 #freqTable, #workArea {

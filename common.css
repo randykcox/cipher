@@ -1,0 +1,56 @@
+:root {
+    box-sizing: border-box;
+    
+    --primaryBg: #eee;
+    --secondaryBg: cornflowerblue;
+    --graphColor: #bbb;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: var(--primaryBg);
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: var(--secondaryBg);
+    padding: 5px;
+}
+
+main {
+    flex: 1 0 auto;
+    margin: 10px;
+}
+
+footer {
+    background-color: #222;
+    padding: 10px;
+    color: var(--primaryBg);
+}
+
+footer a {
+    color: cornflowerblue;
+}
+
+h1, h2 {
+    font-family: Helvetica, Arial, sans-serif;
+    margin: 0;
+}
+
+h1 {
+    font-size: 1.2rem;
+    font-weight: normal;
+}
+
+h2 {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+section {
+    margin: 0 0 20px 0;
+}

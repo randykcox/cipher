@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Randy's Cipher Tools</title>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="solve.css">
+</head>
+<body>
+    <header>
+        <a href="index.html"><h2>Randy's Cipher Tools</h2></a>
+        <h1>Cryptogram Solving Tool</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Ciphertext</h2>
+            <textarea rows="4" id="inputText">
+            </textarea>
+            <button id="analyze">Analyze</button>
+        </section>
+
+        <section>
+            <h2>Frequency Analysis</h2>
+            <table id="freqTable">
+            </table>
+            <details id="sequences">
+                <summary>Sequences</summary>
+            </details>
+        </section>
+
+        <section>
+            <div id="workArea">
+
+            </div>
+        </section>
+</main>
+
+    <footer>
+        <a href="https://gitlab.com/randykcox/cipher">Here's the git repo</a>
+    </footer>
+
+    <script src="cipher.js"></script>
+    <script src="solve.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+:root {
+    box-sizing: border-box;
+    
+    --primaryBg: #eee;
+    --secondaryBg: cornflowerblue;
+    --graphColor: #bbb;
+}
+
+button {
+    font-family: Helvetica, Arial, sans-serif;
+    margin: 0;
+    background-color: var(--secondaryBg);
+    color: #eee;
+}
+
+textarea {
+    width: 99%;
+}
+
+#keyTable, #workArea {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#keyTable th, #keyTable td {
+    border-left: 5px solid var(--primaryBg);
+    text-align: center;
+    width: 1em;
+}
+
+#workArea {
+    background-color: #cbd6ea;
+    padding: 5px;
+}
+
+.keyInput {
+    width: 1em;
+    height: 1.5em;
+    background-color: #fff;
+}
+
+.letterBlock {
+    display: inline-block;
+    min-width: 1em;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.highlight {
+    background-color: yellow;
+}
+
+.keyInput:hover {
+    cursor: pointer;
+}

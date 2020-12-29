@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Randy's Cipher Tools</title>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="create.css">
+</head>
+
+<body>
+    <header>
+        <a href="index.html">
+            <h2>Randy's Cipher Tools</h2>
+        </a>
+        <h1>Encipher/Decipher</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Ciphertext</h2>
+            <textarea rows="4" id="ciphertext"></textarea>
+        </section>
+
+        <section>
+            <h2>Cipher Options</h2>
+            <table id="keyTable">
+                <tr>
+                    <th></th>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>C</th>
+                    <th>D</th>
+                    <th>E</th>
+                    <th>F</th>
+                    <th>G</th>
+                    <th>H</th>
+                    <th>I</th>
+                    <th>J</th>
+                    <th>K</th>
+                    <th>L</th>
+                    <th>M</th>
+                    <th>N</th>
+                    <th>O</th>
+                    <th>P</th>
+                    <th>Q</th>
+                    <th>R</th>
+                    <th>S</th>
+                    <th>T</th>
+                    <th>U</th>
+                    <th>V</th>
+                    <th>W</th>
+                    <th>X</th>
+                    <th>Y</th>
+                    <th>Z</th>
+                </tr>
+                <tr id="keyInputs">
+                    <th>key</th>
+                    <td id="form_A">
+                        <input class="key_A keyInput"
+                            data-letter="A" value="q">
+                    </td>
+                    <td id="form_B">
+                        <input class="key_B keyInput"
+                            data-letter="B" value="w">
+                    </td>
+                    <td id="form_C">
+                        <input class="key_C keyInput"
+                            data-letter="C" value="e">
+                    </td>
+                    <td id="form_D">
+                        <input class="key_D keyInput"
+                            data-letter="D" value="r">
+                    </td>
+                    <td id="form_E">
+                        <input class="key_E keyInput"
+                            data-letter="E" value="t">
+                    </td>
+                    <td id="form_F">
+                        <input class="key_F keyInput"
+                            data-letter="F" value="y">
+                    </td>
+                    <td id="form_G">
+                        <input class="key_G keyInput"
+                            data-letter="G" value="u">
+                    </td>
+                    <td id="form_H">
+                        <input class="key_H keyInput"
+                            data-letter="H" value="i">
+                    </td>
+                    <td id="form_I">
+                        <input class="key_I keyInput"
+                            data-letter="I" value="o">
+                    </td>
+                    <td id="form_J">
+                        <input class="key_J keyInput"
+                            data-letter="J" value="p">
+                    </td>
+                    <td id="form_K">
+                        <input class="key_K keyInput"
+                            data-letter="K" value="a">
+                    </td>
+                    <td id="form_L">
+                        <input class="key_L keyInput"
+                            data-letter="L" value="s">
+                    </td>
+                    <td id="form_M">
+                        <input class="key_M keyInput"
+                            data-letter="M" value="d">
+                    </td>
+                    <td id="form_N">
+                        <input class="key_N keyInput"
+                            data-letter="N" value="f">
+                    </td>
+                    <td id="form_O">
+                        <input class="key_O keyInput"
+                            data-letter="O" value="g">
+                    </td>
+                    <td id="form_P">
+                        <input class="key_P keyInput"
+                            data-letter="P" value="h">
+                    </td>
+                    <td id="form_Q">
+                        <input class="key_Q keyInput"
+                            data-letter="Q" value="j">
+                    </td>
+                    <td id="form_R">
+                        <input class="key_R keyInput"
+                            data-letter="R" value="k">
+                    </td>
+                    <td id="form_S">
+                        <input class="key_S keyInput"
+                            data-letter="S" value="l">
+                    </td>
+                    <td id="form_T">
+                        <input class="key_T keyInput"
+                            data-letter="T" value="z">
+                    </td>
+                    <td id="form_U">
+                        <input class="key_U keyInput"
+                            data-letter="U" value="x">
+                    </td>
+                    <td id="form_V">
+                        <input class="key_V keyInput"
+                            data-letter="V" value="c">
+                    </td>
+                    <td id="form_W">
+                        <input class="key_W keyInput"
+                            data-letter="W" value="v">
+                    </td>
+                    <td id="form_X">
+                        <input class="key_X keyInput"
+                            data-letter="X" value="b">
+                    </td>
+                    <td id="form_Y">
+                        <input class="key_Y keyInput"
+                            data-letter="Y" value="n">
+                    </td>
+                    <td id="form_Z">
+                        <input class="key_Z keyInput"
+                            data-letter="Z" value="m">
+                    </td>
+                </tr>
+            </table>
+            <button id="decipher">&downdownarrows; Decipher</button>
+            <button id="encipher">&uuarr; Encipher</button>
+        </section>
+
+        <section>
+            <h2>Plaintext</h2>
+            <textarea rows="4" id="plaintext"></textarea>
+        </section>
+    </main>
+
+    <footer>
+        <a href="https://gitlab.com/randykcox/cipher">Here's the git repo</a>
+    </footer>
+
+    <script src="cipher.js"></script>
+    <script src="create.js"></script>
+</body>
+
+</html>
