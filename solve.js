@@ -159,6 +159,10 @@ function processInput (evt) {
         return
     }
 
+    // Clear the currentCipherLetter because it gets set to "v" when you use
+    // the keyboard shortcut to paste the ciphertext into the form
+    currentCipherLetter = ""
+    
     // Show the hidden sections of the page
     document.querySelectorAll("section.hide")
         .forEach(function (section) {
