@@ -58,7 +58,7 @@ function analyzeText (text) {
 }
 
 function isPunctuation (character) {
-    const marks = ",.?!&-:;’'\"()"
+    const marks = ",.?!&-:;’'\"()*\\/"
     return marks.includes(character)
 }
 
@@ -67,7 +67,7 @@ function populateWorkArea (text) {
     let workAreaMarkup = ""
 
     for (let i=0; i<text.length; i++) {
-        if (text[i] !== " ") {
+        if (!/\s/.test(text[i])) { // tests for whitespace (space, tab, newline...)
             let guessCharacter = "_"
             if (isPunctuation(text[i])) {
                 guessCharacter = text[i]
@@ -162,7 +162,7 @@ function processInput (evt) {
     // Clear the currentCipherLetter because it gets set to "v" when you use
     // the keyboard shortcut to paste the ciphertext into the form
     currentCipherLetter = ""
-    
+
     // Show the hidden sections of the page
     document.querySelectorAll("section.hide")
         .forEach(function (section) {
